@@ -4,15 +4,14 @@ const session = require('express-session');
 const path = require('path');
 const app = express();
 
-const connection = pg.createConnection({
-	host     : '0.0.0.0',
-	user     : 'postgres',
-	password : '123',
-	database : 'erupe'
+PGHOST=localhost
+PGUSER=postgres
+PGDATABASE=erupe
+PGPASSWORD=123
+PGPORT=5432
     
 
     
-});
 app.use(session({
 	secret: 'secret',
 	resave: true,
