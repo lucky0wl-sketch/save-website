@@ -4,7 +4,7 @@ const session = require('express-session');
 const path = require('path');
 const app = express();
 
-PGHOST=localhost
+PGHOST=0.0.0.0
 PGUSER=postgres
 PGDATABASE=erupe
 PGPASSWORD=123
