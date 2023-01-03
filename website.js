@@ -7,5 +7,5 @@ query.on("row", function(row,result){
 
 result.addRow(row);
 
-});
+})
 
