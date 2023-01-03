@@ -7,19 +7,25 @@ const credentials = {
   password: "123",
   port: 5432,
 };
+const getFirstRowOrderedByName = async () => {
+    const query = `SELECT *
+			       FROM "users"
+			       ORDER BY "name"
+			       LIMIT 1;`;
+    try {
+        await client.connect();  // creates connection
+        const { rows } = await client.query(query); // sends query
+		console.table(rows);
+    } catch (error) {
+        console.error(error.stack);
+    } finally {
+        await client.end();      // closes connection
+    }
 
 // Connect with a connection pool.
 
 async function poolDemo() {
-    const getUsers = (request, response) => {
-        pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
-         if (error) {
-          throw error
-         }
-         response.status(200).json(results.rows)
-        })
-       }
-    const pool = new Pool(credentials);
+  const pool = new Pool(credentials);
   const now = await pool.query("SELECT NOW()");
   await pool.end();
 
@@ -32,5 +38,7 @@ async function poolDemo() {
 (async () => {
   const poolResult = await poolDemo();
   console.log("Time with pool: " + poolResult.rows[0]["now"]);
+
+  
 
 })();
