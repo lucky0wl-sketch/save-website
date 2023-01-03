@@ -22,16 +22,15 @@ async function poolDemo() {
 // Use a self-calling function so we can use async / await.
 
 (async () => {
-  const poolResult = await poolDemo();
-  console.log("Time with pool: " + poolResult.rows[0]["now"]);
-  const getUsers = (request, response) => {
-    pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
-     if (error) {
-      throw error
-     }
-     response.status(200).json(results.rows)
-    })
-   }
+    const getUsers = (request, response) => {
+        pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+         if (error) {
+          throw error
+         }
+         response.status(200).json(results.rows)
+        })
+       }
+  
 
 
 })();
