@@ -1,4 +1,5 @@
-var connectionString = "postgres://brody:123@erupe/127.0.0.1:5432/erupe";
+var pg = require("pg");
+var connectionString = "postgres://brody:123@erupe/0.0.0.0:5432/erupe";
 var pgClient = new pg.Client(connectionString);
 pgClient.connect();
 var query = pgClient.query("SELECT username from users where name = 'Lucky0wl'");
