@@ -1,14 +1,17 @@
 const mysql = require('pg');
+const pgp = require('pg-promise')(/* initialization options */);
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const app = express();
 
-PGHOST=0.0.0.0
-PGUSER=postgres
-PGDATABASE=erupe
-PGPASSWORD=123
-PGPORT=5432
+const cn = {
+    host: '0.0.0.0', // server name or IP address;
+    port: 5432,
+    database: 'erupe',
+    user: 'postgres',
+    password: '123'
+};
     
 
     
