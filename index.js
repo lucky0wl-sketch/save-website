@@ -7,20 +7,6 @@ const credentials = {
   password: "123",
   port: 5432,
 };
-const getFirstRowOrderedByName = async () => {
-    const query = `SELECT *
-			       FROM "users"
-			       ORDER BY "name"
-			       LIMIT 1;`;
-    try {
-        await client.connect();  // creates connection
-        const { rows } = await client.query(query); // sends query
-		console.table(rows);
-    } catch (error) {
-        console.error(error.stack);
-    } finally {
-        await client.end();      // closes connection
-    }
 
 // Connect with a connection pool.
 
@@ -38,7 +24,5 @@ async function poolDemo() {
 (async () => {
   const poolResult = await poolDemo();
   console.log("Time with pool: " + poolResult.rows[0]["now"]);
-
-  
 
 })();
