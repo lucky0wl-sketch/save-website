@@ -14,7 +14,7 @@ const cn = {
 const db = pgp(cn); // database instance;
 
 // select and return a single user name from id:
-db.one('SELECT name FROM users WHERE id = 1', [123])
+db.one('SELECT username FROM users WHERE id = 1', [123])
     .then(user => {
         console.log(user.name); // print user name;
     })
