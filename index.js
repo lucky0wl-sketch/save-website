@@ -1,24 +1,28 @@
-const { Pool } = require("pg");
-const dotenv = require("dotenv");
-dotenv.config();
- 
-const connectDb = async () => {
-    try {
-        const pool = new Pool({
-            user: process.env.PGUSER,
-            host: process.env.PGHOST,
-            database: process.env.PGDATABASE,
-            password: process.env.PGPASSWORD,
-            port: process.env.PGPORT,
-        });
- 
-        await pool.connect()
-        const res = await pool.query('SELECT * FROM clients')
-        console.log(res)
-        await pool.end()
-    } catch (error) {
-        console.log(error)
-    }
+const { Pool, Client } = require("pg");
+
+const credentials = {
+  user: "postgres",
+  host: "0.0.0.0",
+  database: "erupe",
+  password: "123",
+  port: 5432,
+};
+
+// Connect with a connection pool.
+
+async function poolDemo() {
+  const pool = new Pool(credentials);
+  const now = await pool.query("SELECT NOW()");
+  await pool.end();
+
+  return now;
+
 }
- 
-connectDb()
+
+// Use a self-calling function so we can use async / await.
+
+(async () => {
+  const poolResult = await poolDemo();
+  console.log("Time with pool: " + poolResult.rows[0]["now"]);
+
+})();
