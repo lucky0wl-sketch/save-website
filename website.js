@@ -1,4 +1,4 @@
-var pg = require(‘pg’);
+var pg = require("pg");
 var connectionString = "postgres://brody:123@erupe/127.0.0.1:5432/erupe";
 var pgClient = new pg.Client(connectionString);
 pgClient.connect();
